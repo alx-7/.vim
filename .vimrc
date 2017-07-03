@@ -1,3 +1,7 @@
+
+"allway show status line
+set laststatus=2      
+
 set nocompatible        " be iMproved, required                           
 filetype off            " required
 
