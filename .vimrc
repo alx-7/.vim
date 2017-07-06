@@ -1,11 +1,15 @@
+"allway show status line
+set laststatus=2      
+
 set nocompatible        " be iMproved, required                           
+
 filetype off            " required
 
 "Show full path of current file
 set statusline+=%F
 
 " set save all buffer after close vim
-set viminfo^=%
+"set viminfo^=%
 
 " set the shell to zsh
 set shell=/bin/zsh
@@ -37,6 +41,9 @@ Plug 'francoiscabrol/ranger.vim'
 Plug 'haya14busa/incsearch.vim'
 Plug 'mbbill/undotree'
 Plug 'spf13/vim-autoclose'
+Plug 'junegunn/heytmux'
+Plug 'xolox/vim-session'
+Plug 'xolox/vim-misc'
 " Initialize plugin system
 call plug#end()
 
@@ -97,10 +104,6 @@ map <C-p> :bp<CR>
 
 " Show ranger working directory
 map <leader>R :RangerWorkingDirectory<CR>.
-
-
-" map ctr n with next buffer
-map <C-w> :q<CR>
 
 " Vim navigator map for windown
 nnoremap <C-h> <C-w>h
@@ -171,3 +174,21 @@ endif
 "set auto close tag
 let g:autoclose_vim_commentmode = 1
 
+" set airline bar background color
+let g:airline_theme='base16_tomorrow'
+
+"Leader close vim 
+nmap <leader>q :q<CR>
+
+
+" session management
+let g:session_directory = "~/.vim/session"
+let g:session_autoload = "no"
+let g:session_autosave = "no"
+let g:session_command_aliases = 1
+
+"Leader session 
+nnoremap <leader>so :OpenSession
+nnoremap <leader>ss :SaveSession
+nnoremap <leader>sd :DeleteSession<CR>
+nnoremap <leader>sc :CloseSession<CR>
