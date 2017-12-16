@@ -23,13 +23,15 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'benmills/vimux'
 Plugin 'Yggdroot/indentLine'
 Plugin 'tpope/vim-vinegar'
-Plugin 'terryma/vim-multiple-cursors'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+"Plugin 'terryma/vim-multiple-cursors'
 Bundle 'matze/vim-move'
 Plugin 'tpope/vim-surround'
-Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-repeat'
-Plugin 'vim-airline/vim-airline-themes'
 Plugin 'easymotion/vim-easymotion'
+Plugin 'morhetz/gruvbox'
+Plugin 'mbbill/undotree'
 
 
 call vundle#end()            " required                                         
@@ -37,13 +39,17 @@ call vundle#end()            " required
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'francoiscabrol/ranger.vim'
+"Plug 'francoiscabrol/ranger.vim'
 Plug 'haya14busa/incsearch.vim'
 Plug 'mbbill/undotree'
 Plug 'spf13/vim-autoclose'
 Plug 'junegunn/heytmux'
 Plug 'xolox/vim-session'
 Plug 'xolox/vim-misc'
+"Plug 'justinmk/vim-sneak'
+Plug 'mhinz/vim-startify'
+Plug 'chriskempson/base16-vim'
+
 " Initialize plugin system
 call plug#end()
 
@@ -53,7 +59,7 @@ filetype plugin indent on    " required
 set number
 
 " set clipboard
-set clipboard=unnamedplus
+set clipboard=unnamed
 
 "map leader key to ,
 let mapleader = ","
@@ -70,6 +76,7 @@ nmap <silent> <leader>T :TestFile<CR>
 nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
+
 
 " enable syntax
 syntax enable
@@ -93,14 +100,6 @@ map <Leader>H :History!<CR>
 "Map leader command 
 nmap <leader>L :Lines!<CR>
 "
-"Leader buffer 
-nmap <leader>B :Buffers!<CR>
-
-" map ctr n with next buffer
-map <C-n> :bn<CR>
-
-" map ctr n with next buffer
-map <C-p> :bp<CR>
 
 " Show ranger working directory
 map <leader>R :RangerWorkingDirectory<CR>.
@@ -126,7 +125,7 @@ nnoremap   <Leader>C :VimuxPromptCommand(FullPath())  <CR>
 colorscheme gruvbox
 set background=dark
 
-"no auto create swap file
+"nO auto create swap file
 set noswapfile
 
 " haya14busa/incsearch.vim
@@ -154,13 +153,6 @@ inoremap <C-l> <C-o>l
 set autoread 
 au CursorHold * checktime    
 
-
-" Ngb to jump to buffer number N 
-let c = 1
-while c <= 99
-  execute "nnoremap " . c . "g :" . c . "b\<CR>"
-  let c += 1
-endwhile
 
 " map for undo tree
 map <leader>U :UndotreeToggle<CR>
@@ -192,3 +184,22 @@ nnoremap <leader>so :OpenSession
 nnoremap <leader>ss :SaveSession
 nnoremap <leader>sd :DeleteSession<CR>
 nnoremap <leader>sc :CloseSession<CR>
+
+"Leader buffer 
+nnoremap <leader>B :Buffers!<CR>
+
+" map ctr n with next buffer
+nnoremap <C-n> :bn<CR>
+
+" map ctr n with next buffer
+nnoremap <C-p> :bp<CR>
+" map s for f
+"map f <Plug>Sneak_s
+"map F <Plug>Sneak_S
+
+" undo tree setting
+nnoremap <leader>un :UndotreeToggle<cr>
+if has("persistent_undo")
+    set undodir=~/.undodir/
+    set undofile
+endif
